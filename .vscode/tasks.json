@@ -1,0 +1,22 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "next debug",
+      "type": "shell",
+      "command": "npm run debug",
+      "isBackground": true,
+      "presentation": {
+        "reveal": "silent"
+      },
+      "problemMatcher": {
+        "pattern": { "regexp": "a^" },
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "^Port 9230 is free\\. Starting Next\\.js in debug mode\\.\\.\\.",
+          "endsPattern": "^ready - started server"
+        }
+      }
+    }
+  ]
+}

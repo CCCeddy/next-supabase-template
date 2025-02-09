@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "debug": "next dev",
+    "debug": "node scripts/next-debug.mjs",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
