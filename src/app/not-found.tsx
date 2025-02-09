@@ -11,7 +11,7 @@ export default function Custom404() {
       </p>
       <Link
         href="/"
-        className="mt-4 bg-indigo-600 hover:bg-indigo-700 text-white py-3 px-6 rounded-lg text-xl"
+        className="mt-4 bg-foreground hover:bg-indigo-700 text-background py-3 px-6 rounded-lg text-xl"
       >
         Go to Homepage
       </Link>
