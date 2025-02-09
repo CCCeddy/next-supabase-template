@@ -11,9 +11,7 @@ export default function Profile() {
       <hr />
       {session ? (
         <p>
-          {session.user
-            ? `Welcome ${session.user.name} (Role: ${session.user.role})`
-            : null}
+          {session.user ? `Welcome ${session.user.name}` : null}
           <br />
           <button onClick={() => signOut()}>Sign out</button>
         </p>
