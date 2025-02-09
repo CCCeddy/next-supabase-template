@@ -1,3 +1,93 @@
+# general-next-app-template
+
+## Installation
+
+**First Install packages:**
+
+```bash
+pnpm i
+```
+
+**Then Run:**
+
+```bash
+pnpm dev
+```
+
+## Storybook
+
+```bash
+pnpm run storybook
+```
+
+# Next.js 15 Application Directory Structure
+
+This project is structured for a consumer-facing Next.js 15 application that leverages AI (via API calls, etc.). The following structure separates concerns and helps keep the codebase scalable and maintainable.
+
+```bash
+my-nextjs-app/
+├── public/                        # Static assets (served as-is)
+│   └── assets/                    # Global static assets
+│       └── logo.svg
+├── src/
+│   ├── app/                       # Next.js App Router (or use /pages)
+│   │   ├── layout.tsx             # Global layout component
+│   │   ├── page.tsx               # Entry page
+│   │   └── ...                    # Additional pages
+│   │
+│   ├── assets/                    # Assets imported directly in code
+│   │   ├── images/                # Component-specific images
+│   │   │   └── banner.jpg
+│   │   └── icons/                 # Icons used throughout the app
+│   │       └── search.svg
+│   │
+│   ├── components/                # Reusable UI components
+│   │   ├── Header.tsx
+│   │   ├── Footer.tsx
+│   │   └── Card.tsx
+│   │
+│   ├── hooks/                     # Custom React hooks
+│   │   └── useAuth.ts
+│   │
+│   ├── context/                   # React context providers (e.g., auth, theme)
+│   │   └── AuthContext.tsx
+│   │
+│   ├── api/                       # Global API helpers and endpoint definitions
+│   │   ├── fetcher.ts             # Generic fetcher (e.g., for SWR or React Query)
+│   │   └── endpoints.ts           # API endpoint constants
+│   │
+│   ├── services/                  # Business logic and external integrations
+│   │   └── aiService.ts           # AI API integration (e.g., OpenAI calls)
+│   │
+│   ├── utils/                     # General utility functions used across the app
+│   │   └── formatDate.ts
+│   │
+│   ├── lib/                       # Library-specific helpers and abstractions
+│   │   ├── api/                   # Internal API logic (if applicable)
+│   │   │   └── someLibApi.ts
+│   │   ├── utils/                 # Internal library utilities
+│   │   │   └── someLibUtil.ts
+│   │   └── types/                 # Types specific to lib modules
+│   │       └── libTypes.ts
+│   │
+│   ├── types/                     # Global TypeScript types/interfaces
+│   │   └── globalTypes.ts
+│   │
+│   ├── styles/                    # Global styles (CSS, SCSS, etc.)
+│   │   ├── globals.css
+│   │   └── theme.css
+│   │
+│   └── config/                    # Application configuration and constants
+│       └── index.ts               # e.g., environment variables, API keys, etc.
+│
+├── .env                           # Environment variables (not committed to VCS)
+├── package.json
+├── tsconfig.json                  # TypeScript configuration
+└── next.config.js                 # Next.js configuration
+```
+
+# Next.js boilerplate information
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
@@ -5,13 +95,7 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 First, run the development server:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
 pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
