@@ -30,37 +30,47 @@ my-nextjs-app/
 │   └── assets/                    # Global static assets
 │       └── logo.svg
 ├── src/
-│   ├── app/                       # Next.js App Router (or use /pages)
+│   ├── app/                       # Next.js App Router
+│   │   ├── api/
+│   │   │   └── auth/
+│   │   │       └── [...nextauth]/
+│   │   │           ├── options.ts
+│   │   │           └── route.ts
+│   │   ├── auth/
+│   │   │   └── signin/
+│   │   │       └── page.tsx
 │   │   ├── layout.tsx             # Global layout component
 │   │   ├── page.tsx               # Entry page
 │   │   └── ...                    # Additional pages
 │   │
 │   ├── assets/                    # Assets imported directly in code
 │   │   ├── images/                # Component-specific images
-│   │   │   └── banner.jpg
+│   │   │   └── #banner.jpg
 │   │   └── icons/                 # Icons used throughout the app
-│   │       └── search.svg
+│   │       └── #search.svg
 │   │
 │   ├── components/                # Reusable UI components
-│   │   ├── Header.tsx
-│   │   ├── Footer.tsx
-│   │   └── Card.tsx
+│   │   ├── ui/
+│   │   │   ├── button.stories.tsx
+│   │   │   └── button.tsx
+│   │   ├── Providers.tsx
+│   │   └── ThemeProvider.tsx
 │   │
 │   ├── hooks/                     # Custom React hooks
-│   │   └── useAuth.ts
+│   │   └── #useAuth.ts
 │   │
 │   ├── context/                   # React context providers (e.g., auth, theme)
-│   │   └── AuthContext.tsx
+│   │   └── #AuthContext.tsx
 │   │
 │   ├── api/                       # Global API helpers and endpoint definitions
-│   │   ├── fetcher.ts             # Generic fetcher (e.g., for SWR or React Query)
-│   │   └── endpoints.ts           # API endpoint constants
+│   │   ├── #fetcher.ts             # Generic fetcher (e.g., for SWR or React Query)
+│   │   └── #endpoints.ts           # API endpoint constants
 │   │
 │   ├── services/                  # Business logic and external integrations
-│   │   └── aiService.ts           # AI API integration (e.g., OpenAI calls)
+│   │   └── #aiService.ts           # AI API integration (e.g., OpenAI calls)
 │   │
 │   ├── utils/                     # General utility functions used across the app
-│   │   └── formatDate.ts
+│   │   └── #formatDate.ts
 │   │
 │   ├── lib/                       # Library-specific helpers and abstractions
 │   │   ├── api/                   # Internal API logic (if applicable)
@@ -70,15 +80,18 @@ my-nextjs-app/
 │   │   └── types/                 # Types specific to lib modules
 │   │       └── libTypes.ts
 │   │
+│   ├── tests/
+│   │   └── #test.
+│   │
 │   ├── types/                     # Global TypeScript types/interfaces
-│   │   └── globalTypes.ts
+│   │   └── next-auth.d.ts
 │   │
 │   ├── styles/                    # Global styles (CSS, SCSS, etc.)
 │   │   ├── globals.css
-│   │   └── theme.css
+│   │   └── #theme.css
 │   │
 │   └── config/                    # Application configuration and constants
-│       └── index.ts               # e.g., environment variables, API keys, etc.
+│       └── #index.ts               # e.g., environment variables, API keys, etc.
 │
 ├── .env                           # Environment variables (not committed to VCS)
 ├── package.json
