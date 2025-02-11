@@ -1,26 +1,15 @@
-// src/components/ui/container.tsx
-import * as React from "react";
-import { Slot } from "@radix-ui/react-slot";
+import Link from "next/link";
 
-type ContainerProps = {
-  asChild?: boolean;
-  className?: string;
-  children: React.ReactNode;
-};
-
-export default function Container({
-  asChild = false,
-  className,
-  children,
-}: ContainerProps) {
-  // Use Slot if `asChild` is true, otherwise use a div.
-  const Component = asChild ? Slot : "div";
-
+export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <Component
-      className={`${className} bg-foreground text-background grid place-items-center h-full text-center`}
-    >
-      {children}
-    </Component>
+    <div className="min-h-screen">
+      <nav className="bg-foreground text-background shadow-sm">
+        <div className="max-w-7xl mx-auto px-4 py-3">
+          <Link href="/playground">Playground</Link>
+        </div>
+      </nav>
+
+      <main className="max-w-7xl mx-auto px-4 py-8">{children}</main>
+    </div>
   );
 }
