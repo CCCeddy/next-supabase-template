@@ -15,6 +15,7 @@ export default async function Home() {
         ) : (
           <Link href="/auth/signin">Sign in</Link>
         )}
+        <Link href="/playground">Playground</Link>
         <Link href="/weird-link">Weird link</Link>
         <Image
           className="dark:invert"
