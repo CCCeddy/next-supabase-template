@@ -1,24 +1,34 @@
 "use client";
-import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
+import { createSupabaseBrowserClient } from "@/utils/supabase/client";
+import { useAuth } from "@/hooks/use-auth";
 
 export default function Profile() {
-  const { data: session } = useSession();
+  const { user } = useAuth();
+  const supabase = createSupabaseBrowserClient();
+
+  const handleSignOut = async () => {
+    try {
+      await supabase.auth.signOut();
+    } catch (error) {
+      console.error("Error signing out:", error);
+    }
+  };
 
   return (
     <div>
-      session: {JSON.stringify(session)}
+      <div>Session: {JSON.stringify(user)}</div>
       <hr />
-      {session ? (
+      {user ? (
         <p>
-          {session.user ? `Welcome ${session.user.name}` : null}
+          {`Welcome ${user.email}`}
           <br />
-          <button onClick={() => signOut()}>Sign out</button>
+          <button onClick={handleSignOut}>Sign out</button>
         </p>
       ) : (
         <>
           <p>Not logged in</p>
-          <Link href="/auth/signin">Sign In</Link>
+          <Link href="/auth/login">Sign In</Link>
           <br />
         </>
       )}
