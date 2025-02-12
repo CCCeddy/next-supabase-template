@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { getServerSession } from "next-auth";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { LogoutButton } from "@/components/logout-button";
 
 export default async function Home() {
   const session = await getServerSession();
@@ -17,6 +18,7 @@ export default async function Home() {
         )}
         <Link href="/playground">Playground</Link>
         <Link href="/weird-link">Weird link</Link>
+        <LogoutButton />
         <Image
           className="dark:invert"
           src="/next.svg"
