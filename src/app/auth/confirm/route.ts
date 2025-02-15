@@ -1,3 +1,4 @@
+// app/auth/confirm/route.ts
 import { createSupabaseServerClient } from "@/utils/supabase/server";
 import { NextResponse } from "next/server";
 

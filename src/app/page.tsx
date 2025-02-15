@@ -3,14 +3,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { createSupabaseServerClient } from "@/utils/supabase/server";
 import { ThemeToggle } from "@/components/ThemeToggle";
-import { LogoutButton } from "@/components/logout-button";
+import LogoutButton from "@/components/logout-button";
 
 // This is a server component so we use the Supabase server client.
 export default async function Home() {
   const supabase = await createSupabaseServerClient();
   const {
-    data: { session },
-  } = await supabase.auth.getSession();
+    data: { user },
+  } = await supabase.auth.getUser();
 
   return (
     <div
@@ -21,8 +21,10 @@ export default async function Home() {
       <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
         <ThemeToggle />
         {/* If a session exists on the server, show the profile link */}
-        {session ? (
-          <Link href="/profile">Profile</Link>
+        {user ? (
+          <>
+            <Link href="/profile">Profile</Link> {JSON.stringify(user)}
+          </>
         ) : (
           <Link href="/auth/signin">Sign in</Link>
         )}

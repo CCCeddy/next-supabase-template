@@ -1,3 +1,4 @@
+// app/auth/signup/actions.ts
 "use server";
 import { createSupabaseServerClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
