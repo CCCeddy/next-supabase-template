@@ -2,24 +2,59 @@
 
 ## Installation
 
-**First Install packages:**
+**Install packages:**
 
 ```bash
 pnpm i
 ```
 
-**Then Run:**
+**Auth setup:**
+
+1. Add .env variables for the following:
+```.env
+GOOGLE_CLIENT_ID
+GOOGLE_CLIENT_SECRET
+GITHUB_ID
+GITHUB_SECRET
+
+# The following will require setting up a Supabase project
+NEXT_PUBLIC_SUPABASE_URL
+NEXT_PUBLIC_SUPABASE_ANON_KEY
+SUPABASE_SERVICE_ROLE_KEY
+NEXT_PUBLIC_SITE_URL
+```
+
+2. Add the following redirect URI to your providers (for google this would be done through google cloud console): *{siteURL:54321}/auth/v1/callback* or whatever your Supabase project has provided you with. 
+
+3. for local development you may want to set up your local Supabase project with docker
+
+
+
+**Test that the application is correctly installed with:**
 
 ```bash
 pnpm dev
 ```
 
-## Storybook
+## Testing
+**Storybook:**
 
 ```bash
 pnpm run storybook
 ```
 
+**Vitest:**
+
+```bash
+pnpm test:run
+```
+
+**Playwright:**
+```bash
+pnpm test:playwright
+```
+
+<br></br>
 # Next.js 15 Application Directory Structure
 
 This project is structured for a consumer-facing Next.js 15 application that leverages AI (via API calls, etc.). The following structure separates concerns and helps keep the codebase scalable and maintainable.
@@ -99,6 +134,7 @@ my-nextjs-app/
 └── next.config.js                 # Next.js configuration
 ```
 
+<br></br>
 # Next.js boilerplate information
 
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
