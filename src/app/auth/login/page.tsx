@@ -1,5 +1,7 @@
+// THIS FILE HAS BEEN DEPRECATED AND REPLACED WITH /app/(auth-pages)/login/page.tsx
+
 //app/auth/login/page.tsx
-"use client";
+/*"use client";
 
 import React, { useState } from "react";
 import { createClient } from "@/utils/supabase/client";
@@ -182,3 +184,4 @@ export default function AuthPage() {
     </div>
   );
 }
+*/
