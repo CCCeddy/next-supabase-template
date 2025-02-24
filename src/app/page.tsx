@@ -1,13 +1,13 @@
 // src/app/page.tsx
 import Image from "next/image";
 import Link from "next/link";
-import { createSupabaseServerClient } from "@/utils/supabase/server";
+import { createClient } from "@/utils/supabase/server";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import LogoutButton from "@/components/logout-button";
 
 // This is a server component so we use the Supabase server client.
 export default async function Home() {
-  const supabase = await createSupabaseServerClient();
+  const supabase = await createClient();
   const {
     data: { user },
   } = await supabase.auth.getUser();
@@ -26,7 +26,7 @@ export default async function Home() {
             <Link href="/profile">Profile</Link> {JSON.stringify(user)}
           </>
         ) : (
-          <Link href="/auth/signin">Sign in</Link>
+          <Link href="/login">Sign in</Link>
         )}
         <Link href="/playground">Playground</Link>
         <Link href="/weird-link">Weird link</Link>

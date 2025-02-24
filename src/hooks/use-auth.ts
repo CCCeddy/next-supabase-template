@@ -1,12 +1,12 @@
 // src/hooks/use-auth.ts
 "use client";
 
-import { createSupabaseBrowserClient } from "@/utils/supabase/client";
+import { createClient } from "@/utils/supabase/client";
 import { User } from "@supabase/supabase-js";
 import { useEffect, useState } from "react";
 
 export function useAuth(initialUser: User | null = null) {
-  const supabase = createSupabaseBrowserClient();
+  const supabase = createClient();
   const [user, setUser] = useState<User | null>(initialUser);
 
   useEffect(() => {

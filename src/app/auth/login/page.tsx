@@ -2,13 +2,13 @@
 "use client";
 
 import React, { useState } from "react";
-import { createSupabaseBrowserClient } from "@/utils/supabase/client";
+import { createClient } from "@/utils/supabase/client";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 
 export default function AuthPage() {
   const router = useRouter();
-  const supabase = createSupabaseBrowserClient();
+  const supabase = createClient();
 
   // mode: "signin" or "signup"
   const [mode, setMode] = useState<"signin" | "signup">("signin");

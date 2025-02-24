@@ -1,10 +1,10 @@
 // app/auth/signup/actions.ts
 "use server";
-import { createSupabaseServerClient } from "@/utils/supabase/server";
+import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 
 export async function signUp(formData: FormData) {
-  const supabase = await createSupabaseServerClient();
+  const supabase = await createClient();
 
   const { error } = await supabase.auth.signUp({
     email: formData.get("email") as string,

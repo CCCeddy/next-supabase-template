@@ -1,11 +1,11 @@
 "use client";
 import Link from "next/link";
-import { createSupabaseBrowserClient } from "@/utils/supabase/client";
+import { createClient } from "@/utils/supabase/client";
 import { useAuth } from "@/hooks/use-auth";
 
 export default function Profile() {
   const { user } = useAuth();
-  const supabase = createSupabaseBrowserClient();
+  const supabase = createClient();
 
   const handleSignOut = async () => {
     try {
@@ -28,7 +28,7 @@ export default function Profile() {
       ) : (
         <>
           <p>Not logged in</p>
-          <Link href="/auth/login">Sign In</Link>
+          <Link href="/login">Sign In</Link>
           <br />
         </>
       )}
