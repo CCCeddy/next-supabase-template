@@ -2,35 +2,59 @@
 
 A production-ready template for building modern web applications with Next.js 15, Supabase, and shadcn/ui. Designed for rapid MVP development with built-in authentication, database setup, and component examples.
 
-## 🚀 Quick Start
+## �� Prerequisites
 
-1. **Clone and Install**
+- Node.js 18.17 or later
+- pnpm 9.5.0 (specified in package.json)
+- Supabase CLI
+- Git
+
+## 📦 Template Usage
+
+1. **Create New Project**
 ```bash
-# Install dependencies
-pnpm i
+# Using this template through GitHub
+git clone https://github.com/CCCeddy/next-supabase-template.git my-project
+cd my-project
+
+# Or use GitHub's "Use this template" button to create your own repository
 ```
 
-2. **Set Up Environment**
+2. **Environment Setup**
+
+Create a `.env.local` file in the root directory:
+
 ```env
-# Auth (Required for authentication)
-GOOGLE_CLIENT_ID=
-GOOGLE_CLIENT_SECRET=
-GITHUB_ID=
-GITHUB_SECRET=
+# Auth Provider Setup
+GOOGLE_CLIENT_ID=        # From Google Cloud Console
+GOOGLE_CLIENT_SECRET=    # From Google Cloud Console
+GITHUB_ID=              # From GitHub Developer Settings
+GITHUB_SECRET=          # From GitHub Developer Settings
 
 # Supabase Configuration
-NEXT_PUBLIC_SUPABASE_URL=
-NEXT_PUBLIC_SUPABASE_ANON_KEY=
-SUPABASE_SERVICE_ROLE_KEY=
-NEXT_PUBLIC_SITE_URL=
+NEXT_PUBLIC_SUPABASE_URL=       # From Supabase Project Settings
+NEXT_PUBLIC_SUPABASE_ANON_KEY=  # From Supabase Project Settings
+SUPABASE_SERVICE_ROLE_KEY=      # From Supabase Project Settings
+NEXT_PUBLIC_SITE_URL=           # Your deployment URL (localhost:3000 for development)
+
+# Optional for Supabase Studio AI features
+OPENAI_API_KEY=           # Optional: For Supabase Studio AI features
+
+# Optional for Chromatic (if using)
+CHROMATIC_PROJECT_TOKEN=  # Your project token
 ```
 
-3. **Configure Auth Providers**
+3. **Install Dependencies**
+```bash
+pnpm install
+```
+
+4. **Configure Auth Providers**
 - Add redirect URI to your providers: `{siteURL}/auth/v1/callback`
 - For Google: Configure through Google Cloud Console
 - For GitHub: Configure through GitHub Developer Settings
 
-4. **Database Setup**
+5. **Database Setup**
 ```bash
 # Install Supabase CLI
 npm install -g supabase
@@ -45,7 +69,12 @@ supabase db reset
 supabase gen types typescript --local > src/types/supabase.ts
 ```
 
-5. **Start Development**
+> **Note**: This template uses local Supabase for development. For production:
+> 1. Create a Supabase project at [supabase.com](https://supabase.com)
+> 2. Push your migrations: `supabase db push`
+> 3. Update your `.env.local` with production credentials
+
+6. **Start Development**
 ```bash
 pnpm dev
 ```
@@ -54,13 +83,17 @@ pnpm dev
 
 ```bash
 # Component Testing (Storybook)
-pnpm run storybook
+pnpm storybook          # Runs on port 6006
+pnpm build-storybook    # Builds static Storybook
+pnpm chromatic          # Deploys to Chromatic
 
 # Unit Tests (Vitest)
-pnpm test:run
+pnpm test              # Run tests in watch mode
+pnpm test:run          # Run tests once
+pnpm test:coverage     # Run tests with coverage
 
 # E2E Tests (Playwright)
-pnpm test:playwright
+pnpm test:playwright   # Run E2E tests
 ```
 
 ## 📁 Project Structure
@@ -161,11 +194,11 @@ project-root/
 
 ### 📝 File Naming Conventions
 
-- React Components: PascalCase (e.g., `ThemeToggle.tsx`)
-- Utilities/Hooks: camelCase (e.g., `use-auth.ts`)
-- Routes: kebab-case folders
-- SQL Files: snake_case with timestamp prefix
-- Test Files: `.spec.ts` or `.test.ts`
+- React Components: PascalCase (e.g., `ThemeToggle.tsx`, `Providers.tsx`)
+- Hooks and Utilities: camelCase (e.g., `useAuth.ts`, `dbClient.ts`)
+- Routes: kebab-case folders (e.g., `auth-pages`, `private`)
+- SQL Files: snake_case with timestamp prefix (e.g., `20240301000000_create_instruments.sql`)
+- Test Files: `.spec.ts` or `.test.ts` suffix
 
 ### 🔍 Key Files
 
@@ -228,12 +261,41 @@ vercel deploy
 
 ## 🤝 Contributing
 
-1. Fork the repository
-2. Create your feature branch
-3. Commit your changes
-4. Push to the branch
-5. Open a Pull Request
+1. Fork the repository at [https://github.com/CCCeddy/next-supabase-template](https://github.com/CCCeddy/next-supabase-template)
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request to the main repository
+
+## Development
+
+```bash
+pnpm dev               # Starts Next.js with Turbopack (--turbopack flag)
+pnpm debug             # Runs debug script from scripts/next-debug.mjs
+pnpm build             # Builds the production application
+pnpm start             # Starts the production server
+pnpm lint              # Runs ESLint
+```
+
+## 📦 Key Dependencies
+
+- Next.js 15.1.6
+- React 19.0.0
+- Supabase Client 2.48.1
+- Storybook 8.5.3
+- Vitest 3.0.5
+- Playwright 1.50.1
+- Tailwind CSS 3.4.1
+- TypeScript 5.x
 
 ## 📝 License
 
-3. Run `supabase db push` to apply migrations
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 👤 Author
+
+**Ciaran Eddy**
+
+* Github: [@CCCeddy](https://github.com/CCCeddy)
+* Repository: [next-supabase-template](https://github.com/CCCeddy/next-supabase-template)
+
