@@ -2,10 +2,12 @@ import { createClient } from "@/utils/supabase/server";
 import { InstrumentsService } from "@/services/instruments-service";
 import type { Database } from "@/types/supabase";
 import { redirect } from "next/navigation";
+import { revalidatePath } from "next/cache";
 import CreateInstrumentForm from "./CreateInstrumentForm";
 import { Suspense } from "react";
 import Link from "next/link";
-import { Home } from "lucide-react";
+import { Home, Pencil, Trash2 } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 type Instrument = Database["public"]["Tables"]["instruments"]["Row"];
 
@@ -96,10 +98,44 @@ export default async function InstrumentsPage() {
                       className="p-3 border rounded hover:bg-accent/50 flex justify-between items-center"
                     >
                       <span>{instrument.name}</span>
-                      <span className="text-xs text-muted-foreground">
-                        Created:{" "}
-                        {new Date(instrument.created_at).toLocaleDateString()}
-                      </span>
+                      <div className="flex items-center gap-2">
+                        <span className="text-xs text-muted-foreground">
+                          Created:{" "}
+                          {new Date(instrument.created_at).toLocaleDateString()}
+                        </span>
+                        <form
+                          action={async () => {
+                            "use server";
+                            const supabase = await createClient();
+                            const service = new InstrumentsService(supabase);
+                            await service.deleteInstrument(
+                              instrument.id,
+                              user.id
+                            );
+                            revalidatePath("/instruments");
+                          }}
+                        >
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            className="h-8 w-8 p-0"
+                            title="Delete instrument"
+                          >
+                            <Trash2 className="h-4 w-4 text-destructive" />
+                          </Button>
+                        </form>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          className="h-8 w-8 p-0"
+                          title="Edit instrument"
+                          asChild
+                        >
+                          <Link href={`/instruments/${instrument.id}/edit`}>
+                            <Pencil className="h-4 w-4" />
+                          </Link>
+                        </Button>
+                      </div>
                     </div>
                   ))}
                 </div>

@@ -28,6 +28,47 @@ export class InstrumentsRepository extends BaseRepository<"instruments"> {
     );
   }
 
+  async updateInstrument(
+    id: number,
+    name: string,
+    userId: string,
+  ): Promise<DbResponse<Instrument>> {
+    return this.db.query<Instrument>(
+      async (client: SupabaseClient<Database>) => {
+        const { data, error } = await client
+          .from(this.tableName)
+          .update({ name, updated_at: new Date().toISOString() })
+          .eq("id", id)
+          .eq("user_id", userId) // Extra security check
+          .select()
+          .single();
+
+        if (error) throw error;
+        return data;
+      },
+    );
+  }
+
+  async deleteInstrument(
+    id: number,
+    userId: string,
+  ): Promise<DbResponse<Instrument>> {
+    return this.db.query<Instrument>(
+      async (client: SupabaseClient<Database>) => {
+        const { data, error } = await client
+          .from(this.tableName)
+          .delete()
+          .eq("id", id)
+          .eq("user_id", userId) // Extra security check
+          .select()
+          .single();
+
+        if (error) throw error;
+        return data;
+      },
+    );
+  }
+
   async listUserInstruments(
     userId: string,
     params?: {

@@ -30,4 +30,22 @@ export class InstrumentsService {
 
     return this.repository.createInstrument(name.trim(), userId);
   }
+
+  async updateInstrument(id: number, name: string, userId: string) {
+    if (!name.trim()) {
+      return {
+        data: null,
+        error: {
+          code: "VALIDATION_ERROR",
+          message: "Instrument name cannot be empty",
+        },
+      };
+    }
+
+    return this.repository.updateInstrument(id, name.trim(), userId);
+  }
+
+  async deleteInstrument(id: number, userId: string) {
+    return this.repository.deleteInstrument(id, userId);
+  }
 }
