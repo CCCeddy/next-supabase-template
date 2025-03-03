@@ -1,7 +1,13 @@
 import { InstrumentsRepository } from "@/lib/supabase/repositories/instruments-repository";
+import { SupabaseClient } from "@supabase/supabase-js";
+import type { Database } from "@/types/supabase";
 
 export class InstrumentsService {
-  private repository = new InstrumentsRepository();
+  private repository: InstrumentsRepository;
+
+  constructor(client?: SupabaseClient<Database>) {
+    this.repository = new InstrumentsRepository(client);
+  }
 
   async listUserInstruments(userId: string, page = 1, pageSize = 10) {
     return this.repository.listUserInstruments(userId, {

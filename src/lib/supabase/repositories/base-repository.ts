@@ -9,9 +9,9 @@ export class BaseRepository<T extends TableName> {
   protected readonly tableName: T;
   protected readonly db: DatabaseService;
 
-  constructor(tableName: T) {
+  constructor(tableName: T, client?: SupabaseClient<Database>) {
     this.tableName = tableName;
-    this.db = new DatabaseService();
+    this.db = new DatabaseService(client);
   }
 
   // Add a protected method for common query building

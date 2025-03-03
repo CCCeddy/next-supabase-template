@@ -19,7 +19,7 @@ export default async function InstrumentsPage() {
     redirect("/login");
   }
 
-  const service = new InstrumentsService();
+  const service = new InstrumentsService(supabase);
   const { data: instruments, error } = await service.listUserInstruments(
     user.id,
     1,

@@ -6,8 +6,8 @@ import { SupabaseClient } from "@supabase/supabase-js";
 type Instrument = Database["public"]["Tables"]["instruments"]["Row"];
 
 export class InstrumentsRepository extends BaseRepository<"instruments"> {
-  constructor() {
-    super("instruments");
+  constructor(client?: SupabaseClient<Database>) {
+    super("instruments", client);
   }
 
   async createInstrument(

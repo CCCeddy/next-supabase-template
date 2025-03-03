@@ -12,8 +12,8 @@ export type DbResponse<T> = {
 export class DatabaseService {
   private client: SupabaseClient<Database>;
 
-  constructor() {
-    this.client = createClient();
+  constructor(client?: SupabaseClient<Database>) {
+    this.client = client || createClient();
   }
 
   async query<T>(
