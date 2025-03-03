@@ -1,169 +1,231 @@
-# general-next-app-template
+# Next.js 15 Template Application
 
-## Installation
+A production-ready template for building modern web applications with Next.js 15, Supabase, and shadcn/ui. Designed for rapid MVP development with built-in authentication, database setup, and component examples.
 
-**Install packages:**
+## 🚀 Quick Start
 
+1. **Clone and Install**
 ```bash
+# Install dependencies
 pnpm i
 ```
 
-**Auth setup:**
+2. **Set Up Environment**
+```env
+# Auth (Required for authentication)
+GOOGLE_CLIENT_ID=
+GOOGLE_CLIENT_SECRET=
+GITHUB_ID=
+GITHUB_SECRET=
 
-1. Add .env variables for the following:
-```.env
-GOOGLE_CLIENT_ID
-GOOGLE_CLIENT_SECRET
-GITHUB_ID
-GITHUB_SECRET
-
-# The following will require setting up a Supabase project
-NEXT_PUBLIC_SUPABASE_URL
-NEXT_PUBLIC_SUPABASE_ANON_KEY
-SUPABASE_SERVICE_ROLE_KEY
-NEXT_PUBLIC_SITE_URL
+# Supabase Configuration
+NEXT_PUBLIC_SUPABASE_URL=
+NEXT_PUBLIC_SUPABASE_ANON_KEY=
+SUPABASE_SERVICE_ROLE_KEY=
+NEXT_PUBLIC_SITE_URL=
 ```
 
-2. Add the following redirect URI to your providers (for google this would be done through google cloud console): *{siteURL:54321}/auth/v1/callback* or whatever your Supabase project has provided you with. 
+3. **Configure Auth Providers**
+- Add redirect URI to your providers: `{siteURL}/auth/v1/callback`
+- For Google: Configure through Google Cloud Console
+- For GitHub: Configure through GitHub Developer Settings
 
-3. for local development you may want to set up your local Supabase project with docker
+4. **Database Setup**
+```bash
+# Install Supabase CLI
+npm install -g supabase
 
+# Start local Supabase
+pnpm supabase start
 
+# Apply migrations
+supabase db reset
 
-**Test that the application is correctly installed with:**
+# Generate types
+supabase gen types typescript --local > src/types/supabase.ts
+```
 
+5. **Start Development**
 ```bash
 pnpm dev
 ```
 
-## Testing
-**Storybook:**
+## 🧪 Testing Suite
 
 ```bash
+# Component Testing (Storybook)
 pnpm run storybook
-```
 
-**Vitest:**
-
-```bash
+# Unit Tests (Vitest)
 pnpm test:run
-```
 
-**Playwright:**
-```bash
+# E2E Tests (Playwright)
 pnpm test:playwright
 ```
 
-<br></br>
-# Next.js 15 Application Directory Structure
-
-This project is structured for a consumer-facing Next.js 15 application that leverages AI (via API calls, etc.). The following structure separates concerns and helps keep the codebase scalable and maintainable.
+## 📁 Project Structure
 
 ```bash
-my-nextjs-app/
-├── public/                        # Static assets (served as-is)
-│   └── assets/                    # Global static assets
-│       └── logo.svg
-├── src/
-│   ├── app/                       # Next.js App Router
-│   │   ├── api/
-│   │   │   └── auth/
-│   │   │       └── [...nextauth]/
-│   │   │           ├── options.ts
-│   │   │           └── route.ts
-│   │   ├── auth/
-│   │   │   └── signin/
-│   │   │       └── page.tsx
-│   │   ├── layout.tsx             # Global layout component
-│   │   ├── page.tsx               # Entry page
-│   │   └── ...                    # Additional pages
-│   │
-│   ├── assets/                    # Assets imported directly in code
-│   │   ├── images/                # Component-specific images
-│   │   │   └── #banner.jpg
-│   │   └── icons/                 # Icons used throughout the app
-│   │       └── #search.svg
-│   │
-│   ├── components/                # Reusable UI components
-│   │   ├── ui/
-│   │   │   ├── button.stories.tsx
-│   │   │   └── button.tsx
-│   │   ├── Providers.tsx
-│   │   └── ThemeProvider.tsx
-│   │
-│   ├── hooks/                     # Custom React hooks
-│   │   └── #useAuth.ts
-│   │
-│   ├── context/                   # React context providers (e.g., auth, theme)
-│   │   └── #AuthContext.tsx
-│   │
-│   ├── api/                       # Global API helpers and endpoint definitions
-│   │   ├── #fetcher.ts             # Generic fetcher (e.g., for SWR or React Query)
-│   │   └── #endpoints.ts           # API endpoint constants
-│   │
-│   ├── services/                  # Business logic and external integrations
-│   │   └── #aiService.ts           # AI API integration (e.g., OpenAI calls)
-│   │
-│   ├── utils/                     # General utility functions used across the app
-│   │   └── #formatDate.ts
-│   │
-│   ├── lib/                       # Library-specific helpers and abstractions
-│   │   ├── api/                   # Internal API logic (if applicable)
-│   │   │   └── someLibApi.ts
-│   │   ├── utils/                 # Internal library utilities
-│   │   │   └── someLibUtil.ts
-│   │   └── types/                 # Types specific to lib modules
-│   │       └── libTypes.ts
-│   │
-│   ├── tests/
-│   │   └── #test.
-│   │
-│   ├── types/                     # Global TypeScript types/interfaces
-│   │   └── next-auth.d.ts
-│   │
-│   ├── styles/                    # Global styles (CSS, SCSS, etc.)
-│   │   ├── globals.css
-│   │   └── #theme.css
-│   │
-│   └── config/                    # Application configuration and constants
-│       └── #index.ts               # e.g., environment variables, API keys, etc.
+project-root/
+├── public/                        # Static assets
+│   ├── file.svg
+│   ├── globe.svg
+│   ├── next.svg
+│   └── vercel.svg
 │
-├── .env                           # Environment variables (not committed to VCS)
-├── package.json
-├── tsconfig.json                  # TypeScript configuration
-└── next.config.js                 # Next.js configuration
+├── scripts/                       # Development scripts
+│   └── next-debug.mjs            # Next.js debugging configuration
+│
+├── src/
+│   ├── app/                      # Next.js App Router
+│   │   ├── (auth-pages)/        # Grouped authentication pages
+│   │   │   └── login/          # Login page implementation
+│   │   ├── actions/            # Server actions
+│   │   │   └── logout.ts      # Logout functionality
+│   │   ├── auth/              # Auth-related routes
+│   │   │   ├── callback/     # OAuth callback handling
+│   │   │   ├── confirm/      # Email confirmation
+│   │   │   ├── login/       # Login implementation
+│   │   │   └── signup/      # Signup implementation
+│   │   ├── instruments/      # Instruments feature
+│   │   ├── playground/       # Development playground
+│   │   ├── private/         # Protected routes example
+│   │   └── profile/         # User profile pages
+│   │
+│   ├── components/           # Reusable components
+│   │   ├── ui/              # shadcn/ui components
+│   │   ├── logout-button.tsx
+│   │   ├── Providers.tsx    # App providers wrapper
+│   │   └── ThemeToggle.tsx  # Dark/light mode toggle
+│   │
+│   ├── hooks/               # Custom React hooks
+│   │   └── use-auth.ts     # Authentication hook
+│   │
+│   ├── lib/                 # Core utilities
+│   │   ├── supabase/       # Supabase integration
+│   │   │   ├── repositories/
+│   │   │   └── db-client.ts
+│   │   └── utils.ts        # Helper functions
+│   │
+│   ├── services/           # Business logic
+│   │   └── instruments-service.ts
+│   │
+│   ├── tests/             # Test files
+│   │   ├── e2e/          # Playwright tests
+│   │   └── unit/         # Unit tests
+│   │
+│   ├── types/            # TypeScript types
+│   │   └── supabase.ts  # Generated Supabase types
+│   │
+│   ├── utils/           # Utility functions
+│   │   └── supabase/   # Supabase utilities
+│   │       ├── client.ts
+│   │       ├── middleware.ts
+│   │       └── server.ts
+│   │
+│   └── middleware.ts    # Next.js middleware
+│
+└── supabase/           # Supabase configuration
+    ├── migrations/    # Database migrations
+    │   ├── 20240301000000_create_instruments.sql
+    │   └── 20240301000001_add_auth_to_instruments.sql
+    └── seed.sql      # Initial database seed
 ```
 
-<br></br>
-# Next.js boilerplate information
+### 🗂️ Key Directories Explained
 
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+- **/src/app**: Next.js 13+ app directory containing all routes and pages
+  - `(auth-pages)`: Route group for authentication-related pages
+  - `actions`: Server-side actions (Next.js Server Actions)
+  - `auth`: Authentication flow implementation
+  - `instruments`: Example feature implementation with CRUD operations
+  - `playground`: Development and testing area
 
-## Getting Started
+- **/src/components**: 
+  - `ui`: shadcn/ui components with custom styling
+  - Root components are app-wide shared components
 
-First, run the development server:
+- **/src/lib**: Core functionality
+  - `supabase`: Database client and repositories
+  - `utils.ts`: Shared utility functions
 
+- **/src/services**: Business logic layer separating database from UI
+
+### 📝 File Naming Conventions
+
+- React Components: PascalCase (e.g., `ThemeToggle.tsx`)
+- Utilities/Hooks: camelCase (e.g., `use-auth.ts`)
+- Routes: kebab-case folders
+- SQL Files: snake_case with timestamp prefix
+- Test Files: `.spec.ts` or `.test.ts`
+
+### 🔍 Key Files
+
+- `src/middleware.ts`: Authentication and route protection
+- `src/lib/supabase/db-client.ts`: Supabase client configuration
+- `src/utils/supabase/server.ts`: Server-side Supabase utilities
+- `src/hooks/use-auth.ts`: Authentication hook for components
+- `supabase/migrations/*.sql`: Database schema and RLS policies
+
+### 💡 Development Tips
+
+- Use the `playground` directory for testing new features
+- Check `instruments` feature for full-stack implementation examples
+- Server Actions are in `src/app/actions`
+- Authentication flow examples in `src/app/auth`
+
+## �� Key Features
+
+- **Authentication**: Pre-configured with Google and GitHub auth
+- **Database**: Supabase setup with migrations and type generation
+- **UI Components**: shadcn/ui integration with examples
+- **Type Safety**: Full TypeScript support
+- **Testing**: Comprehensive testing setup
+- **Security**: Row Level Security (RLS) examples
+- **State Management**: Examples of various patterns
+
+## 💡 Development Tips
+
+### Authentication
+- Example implementation in `src/app/auth/`
+- RLS policies in `supabase/migrations/`
+- Protected routes demonstration
+
+### Database
+- Migrations in `supabase/migrations/`
+- Repository pattern in `src/lib/supabase/`
+- Service layer in `src/services/`
+
+### Components
+- shadcn/ui usage examples
+- Form handling patterns
+- State management examples
+- Accessibility implementations
+
+## 🚀 Deployment
+
+1. Create a Supabase project
+2. Update environment variables
+3. Deploy to Vercel:
 ```bash
-pnpm dev
+vercel deploy
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 📚 Additional Resources
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- [Next.js Documentation](https://nextjs.org/docs)
+- [Supabase Documentation](https://supabase.io/docs)
+- [shadcn/ui Components](https://ui.shadcn.com)
+- [TypeScript Guide](https://www.typescriptlang.org/docs/)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🤝 Contributing
 
-## Learn More
+1. Fork the repository
+2. Create your feature branch
+3. Commit your changes
+4. Push to the branch
+5. Open a Pull Request
 
-To learn more about Next.js, take a look at the following resources:
+## 📝 License
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+3. Run `supabase db push` to apply migrations
