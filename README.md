@@ -88,12 +88,18 @@ project-root/
 │   │   │   ├── login/       # Login implementation
 │   │   │   └── signup/      # Signup implementation
 │   │   ├── instruments/      # Instruments feature
+│   │   │   ├── [id]/        # Dynamic instrument routes
+│   │   │   │   └── edit/    # Edit instrument page
+│   │   │   ├── CreateInstrumentForm.tsx
+│   │   │   └── page.tsx     # Instruments list page
 │   │   ├── playground/       # Development playground
 │   │   ├── private/         # Protected routes example
 │   │   └── profile/         # User profile pages
 │   │
 │   ├── components/           # Reusable components
 │   │   ├── ui/              # shadcn/ui components
+│   │   │   ├── button.tsx
+│   │   │   └── input.tsx
 │   │   ├── logout-button.tsx
 │   │   ├── Providers.tsx    # App providers wrapper
 │   │   └── ThemeToggle.tsx  # Dark/light mode toggle
@@ -104,6 +110,8 @@ project-root/
 │   ├── lib/                 # Core utilities
 │   │   ├── supabase/       # Supabase integration
 │   │   │   ├── repositories/
+│   │   │   │   ├── base-repository.ts
+│   │   │   │   └── instruments-repository.ts
 │   │   │   └── db-client.ts
 │   │   └── utils.ts        # Helper functions
 │   │
