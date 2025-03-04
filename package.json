@@ -14,7 +14,9 @@
     "test:playwright": "playwright test",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "chromatic": "npx chromatic --project-token=chpt_656b86eb3aeb4dd"
+    "chromatic": "npx chromatic --project-token=chpt_656b86eb3aeb4dd",
+    "format": "prettier --write \"**/*.{ts,tsx,md,json,js,jsx,mjs}\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx,md,json,js,jsx,mjs}\""
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.1.2",
@@ -58,10 +60,14 @@
     "css-loader": "^7.1.2",
     "eslint": "^9",
     "eslint-config-next": "15.1.6",
+    "eslint-config-prettier": "^10.0.2",
+    "eslint-plugin-prettier": "^5.2.3",
     "eslint-plugin-storybook": "^0.11.2",
     "jsdom": "^26.0.0",
     "postcss": "^8",
     "postcss-loader": "^8.1.1",
+    "prettier": "^3.5.3",
+    "prettier-plugin-tailwindcss": "^0.6.11",
     "storybook": "8.5.4",
     "style-loader": "^4.0.0",
     "supabase": "^2.12.0",
