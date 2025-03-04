@@ -29,6 +29,7 @@ export default async function Home() {
         )}
         <Link href="/playground">Playground</Link>
         <Link href="/instruments">Data Access Demo</Link>
+        <Link href="/error-examples">Error Examples</Link>
         <Link href="/weird-link">Weird link</Link>
         <LogoutButton />
       </main>

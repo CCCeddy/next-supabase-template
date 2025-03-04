@@ -3,6 +3,8 @@
 
 import type { ReactNode } from "react";
 import { ThemeProvider } from "./ThemeProvider";
+import { ErrorBoundary } from "./ErrorBoundary";
+import { ErrorFallback } from "./ErrorFallback";
 
 interface ProvidersProps {
   children: ReactNode;
@@ -10,13 +12,15 @@ interface ProvidersProps {
 
 export default function Providers({ children }: ProvidersProps) {
   return (
-    <ThemeProvider
-      attribute="class"
-      defaultTheme="system"
-      enableSystem
-      disableTransitionOnChange
-    >
-      {children}
-    </ThemeProvider>
+    <ErrorBoundary fallback={<ErrorFallback />}>
+      <ThemeProvider
+        attribute="class"
+        defaultTheme="system"
+        enableSystem
+        disableTransitionOnChange
+      >
+        {children}
+      </ThemeProvider>
+    </ErrorBoundary>
   );
 }
