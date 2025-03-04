@@ -256,11 +256,26 @@ project-root/
 
 ### 📝 File Naming Conventions
 
-- React Components: PascalCase (e.g., `ThemeToggle.tsx`, `Providers.tsx`)
-- Hooks and Utilities: camelCase (e.g., `useAuth.ts`, `dbClient.ts`)
-- Routes: kebab-case folders (e.g., `auth-pages`, `private`)
-- SQL Files: snake_case with timestamp prefix (e.g., `20240301000000_create_instruments.sql`)
-- Test Files: `.spec.ts` or `.test.ts` suffix
+- **Routing Files (Next.js App Router)**
+  - Use all lowercase kebab-case for special files (e.g., `page.tsx`, `layout.tsx`, `middleware.ts`).
+  - Folder names for routes are in kebab-case (e.g., `auth-pages`, `private`).
+
+- **React Components**
+  - **High-Level Components:** Use PascalCase (e.g., `ThemeToggle.tsx`, `Providers.tsx`, `CreateInstrumentForm.tsx`).
+  - **Smaller/Utility Components:** Use kebab-case (e.g., `logout-button.tsx`, `button.tsx`, `input.tsx`).
+
+- **Hooks & Utilities**
+  - Use kebab-case (e.g., `use-auth.ts`, `db-client.ts`).
+
+- **SQL Files**
+  - Use snake_case with a timestamp prefix (e.g., `20240301000000_create_instruments.sql`).
+
+- **Test Files**
+  - Use a `.spec.ts` or `.test.ts` suffix for clarity (e.g., `component.spec.ts`).
+
+- **Static Assets**
+  - Maintain original naming (e.g., `file.svg`, `next.svg` in the `public` folder).
+
 
 ### 🔍 Key Files
 
