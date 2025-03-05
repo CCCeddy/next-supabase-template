@@ -17,6 +17,7 @@ A production-ready template for building modern web applications with Next.js 15
 - **Full Stack Solution**: Authentication, database, and UI components pre-configured
 - **Developer Experience**: Comprehensive testing suite and development tools included
 - **Type Safety**: Full TypeScript integration throughout the codebase
+- **Error Handling**: Robust error handling system with custom error boundaries
 
 ## ⚡ Quick Start
 
