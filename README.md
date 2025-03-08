@@ -346,6 +346,59 @@ Future enhancements planned for this template:
 vercel deploy
 ```
 
+## 🔄 CI/CD Pipeline
+
+This template includes a robust CI/CD pipeline using GitHub Actions that automates testing, building, and deployment processes.
+
+### 📋 Pipeline Features
+
+- **Automated Testing**
+  - Unit tests (Vitest)
+  - E2E tests (Playwright)
+  - Code quality checks (ESLint)
+  - Format verification (Prettier)
+
+- **Automated Deployments**
+  - Preview deployments for Pull Requests
+  - Production deployments for main/master branch
+  - Artifact preservation for debugging
+
+### 🔧 Setup Instructions
+
+1. **Configure Vercel Integration**
+   ```bash
+   # Install Vercel CLI
+   npm i -g vercel
+   
+   # Link your project
+   vercel link
+   ```
+
+2. **Set GitHub Repository Secrets**
+   Add to your repository's secrets:
+   - `VERCEL_TOKEN`
+   - `VERCEL_PROJECT_ID`
+   - `VERCEL_ORG_ID`
+
+### 🔄 Workflow Stages
+
+1. **Pull Request**
+   - Runs all tests and quality checks
+   - Creates preview deployment
+   - Reports status in PR
+
+2. **Main Branch Merge**
+   - Validates all checks
+   - Creates production build
+   - Deploys to production
+   - Archives artifacts
+
+### 📊 Monitoring
+
+- Preview deployments: Check PR comments
+- Production status: Vercel dashboard
+- Build logs: GitHub Actions tab
+
 ## ❓ Troubleshooting
 
 <details>
