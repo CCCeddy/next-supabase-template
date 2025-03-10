@@ -307,6 +307,7 @@ This template has been successfully used to build:
 1. **SaaS Dashboard** - A customer management platform with user roles and analytics
 2. **Content Management System** - Editorial workflow with media management
 3. **E-commerce MVP** - Product catalog with user accounts and cart functionality
+4. **Form-Heavy Applications** - Using Zod for robust form validation and type safety
 
 ## 💡 Development Tips
 
@@ -325,6 +326,37 @@ This template has been successfully used to build:
 - Form handling patterns
 - State management examples
 - Accessibility implementations
+
+### Form Validation with Zod
+Located in `src/app/(examples)/zod/`:
+- Type-safe form validation
+- Real-time validation feedback
+- Integration with React Hook Form
+- Custom error messages and styling
+- Example schemas in `src/lib/schemas/example-schemas.ts`
+
+Example implementation:
+```typescript
+// Define your schema
+const userInfoSchema = z.object({
+  username: z.string().min(3),
+  email: z.string().email(),
+  age: z.number().min(13)
+});
+
+// Use with React Hook Form
+const form = useForm<z.infer<typeof userInfoSchema>>({
+  resolver: zodResolver(userInfoSchema),
+  mode: 'onChange'
+});
+```
+
+Key features:
+- Immediate validation feedback
+- Type inference for TypeScript
+- Custom error messages
+- Integration with shadcn/ui components
+- Responsive form design
 
 ## 🔮 Roadmap
 
@@ -482,6 +514,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 * Github: [@CCCeddy](https://github.com/CCCeddy)
 * Repository: [next-supabase-template](https://github.com/CCCeddy/next-supabase-template)
+
 
 
 
