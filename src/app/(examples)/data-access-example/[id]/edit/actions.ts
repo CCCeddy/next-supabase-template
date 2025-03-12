@@ -23,5 +23,5 @@ export async function updateInstrument(formData: FormData) {
 
   const service = new InstrumentsService(supabase);
   await service.updateInstrument(parseInt(instrumentId), name, user.id);
-  redirect("/instruments");
+  redirect("/data-access-example");
 }

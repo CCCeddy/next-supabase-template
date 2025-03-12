@@ -6,7 +6,7 @@
 export default function ErrorExamplesPage() {
   return (
     <div className="min-h-screen p-8">
-      <div className="mx-auto max-w-2xl space-y-8">
+      <div className="mx-auto space-y-8">
         <div className="mb-8 rounded-lg bg-card p-6 text-card-foreground shadow">
           <h1 className="mb-4 text-2xl font-bold">Error Examples</h1>
           <p className="mb-4 text-muted-foreground">

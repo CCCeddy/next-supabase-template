@@ -24,11 +24,11 @@ export default async function Home() {
           <Link href="/login">Sign in</Link>
         )}
         <Link href="/playground">Playground</Link>
-        <Link href="/instruments">Data Access Demo</Link>
-        <Link href="/error-examples">Error Examples</Link>
-        <Link href="/zod">Zod Validation Example</Link>
-        <Link href="/api-validation">API Validation Example</Link>
-        <Link href="/weird-link">Weird link</Link>
+        <Link href="/data-access-example">Data Access</Link>
+        <Link href="/error-examples">Errors</Link>
+        <Link href="/zod">Zod Validation</Link>
+        <Link href="/api-validation">API Validation</Link>
+        <Link href="/bad-link">Bad Link</Link>
         <LogoutButton />
       </main>
       <footer className="row-start-3 flex flex-wrap items-center justify-center gap-6"></footer>

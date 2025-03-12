@@ -29,7 +29,7 @@ export default async function Page(rawProps: any) {
   const instrument = instruments?.find((i) => i.id === parseInt(resolvedParams.id));
 
   if (!instrument) {
-    redirect('/instruments');
+    redirect('/data-access-example');
   }
 
   return <EditInstrumentForm instrument={instrument} instrumentId={resolvedParams.id} />;
