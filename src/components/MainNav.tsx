@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
 import Link from 'next/link';
-import { Code2 } from 'lucide-react';
+import { Code2, UserCircle2 } from 'lucide-react';
 import { ThemeToggle } from '@/components/ThemeToggle';
 import LogoutButton from '@/components/logout-button';
 import { User } from '@supabase/supabase-js';
@@ -22,35 +22,30 @@ export function MainNav({ user }: MainNavProps) {
         </div>
 
         <nav className="flex items-center gap-6">
-          <Link 
-            href="/examples" 
+          <Link
+            href="/examples"
             className="text-sm font-medium transition-colors hover:text-primary"
           >
             Examples
           </Link>
-          <Link 
-            href="/docs" 
-            className="text-sm font-medium transition-colors hover:text-primary"
-          >
+          <Link href="/docs" className="text-sm font-medium transition-colors hover:text-primary">
             Documentation
           </Link>
           <div className="flex items-center gap-4">
             <ThemeToggle />
             {user ? (
-              <div className="flex items-center gap-4">
-                <Link 
+              <div className="flex items-center gap-2">
+                <Link
                   href="/profile"
-                  className="text-sm hover:text-primary"
+                  className="inline-flex items-center justify-center rounded-md hover:text-primary"
+                  title="Profile"
                 >
-                  Profile
+                  <UserCircle2 className="h-5 w-5" />
                 </Link>
                 <LogoutButton />
               </div>
             ) : (
-              <Link 
-                href="/login"
-                className="text-sm hover:text-primary"
-              >
+              <Link href="/login" className="text-sm font-medium hover:text-primary">
                 Sign in
               </Link>
             )}
