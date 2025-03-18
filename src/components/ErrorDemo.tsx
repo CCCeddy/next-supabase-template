@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { notFound } from "next/navigation";
+import { useState } from 'react';
+import { notFound } from 'next/navigation';
 
 interface ErrorDemoProps {
   throwImmediate?: boolean;
@@ -10,14 +10,14 @@ interface ErrorDemoProps {
 class CustomError extends Error {
   constructor(message: string) {
     super(message);
-    this.name = "CustomError";
+    this.name = 'CustomError';
   }
 }
 
 class Custom404Error extends Error {
-  constructor(message: string = "Custom 404 Error") {
+  constructor(message: string = 'Custom 404 Error') {
     super(message);
-    this.name = "Custom404Error";
+    this.name = 'Custom404Error';
     this.statusCode = 404;
   }
   statusCode: number;
@@ -27,13 +27,15 @@ export function ErrorDemo({ throwImmediate = false }: ErrorDemoProps) {
   const [count, setCount] = useState(0);
 
   if (throwImmediate) {
-    throw new CustomError("This is an immediate rendering error demonstration");
+    throw new CustomError('This is an immediate rendering error demonstration');
   }
 
   const triggerClientError = () => {
-    throw new CustomError(
-      "This is a simulated client-side error from a button click"
-    );
+    // Wrap in setTimeout to ensure the error is caught by ErrorBoundary
+    // instead of React's default error overlay
+    setTimeout(() => {
+      throw new CustomError('This is a simulated client-side error from a button click');
+    }, 0);
   };
 
   const triggerAsyncError = async () => {
@@ -41,22 +43,26 @@ export function ErrorDemo({ throwImmediate = false }: ErrorDemoProps) {
       // Simulate an API call that fails
       await new Promise((_, reject) => {
         setTimeout(() => {
-          reject(
-            new CustomError("This is a simulated async operation failure")
-          );
+          reject(new CustomError('This is a simulated async operation failure'));
         }, 1000);
       });
     } catch (error) {
-      throw error;
+      // Re-throw inside setTimeout to ensure ErrorBoundary catches it
+      setTimeout(() => {
+        throw error;
+      }, 0);
     }
   };
 
   const triggerStateError = () => {
     setCount((prevCount) => {
       if (prevCount > 2) {
-        throw new CustomError(
-          `This is a state management error (triggered at count ${prevCount})`
-        );
+        // Wrap in setTimeout to ensure ErrorBoundary catches it
+        setTimeout(() => {
+          throw new CustomError(
+            `This is a state management error (triggered at count ${prevCount})`
+          );
+        }, 0);
       }
       return prevCount + 1;
     });
@@ -67,30 +73,32 @@ export function ErrorDemo({ throwImmediate = false }: ErrorDemoProps) {
   };
 
   const triggerCustom404 = () => {
-    throw new Custom404Error(
-      "This is a custom 404 error that triggers the error boundary"
-    );
+    setTimeout(() => {
+      throw new Custom404Error('This is a custom 404 error that triggers the error boundary');
+    }, 0);
   };
 
   const triggerPromiseRejection = () => {
-    // This will trigger an unhandled promise rejection
-    Promise.reject(new CustomError("This is an unhandled Promise rejection"));
+    // Wrap in setTimeout to ensure ErrorBoundary catches it
+    setTimeout(() => {
+      Promise.reject(new CustomError('This is an unhandled Promise rejection'));
+    }, 0);
   };
 
   return (
     <div className="space-y-8">
-      <div className="bg-card text-card-foreground p-6 rounded-lg shadow">
-        <h2 className="text-xl font-bold mb-4">Error Demonstration Panel</h2>
-        <p className="text-muted-foreground mb-6">
-          This panel demonstrates various types of errors and how they are
-          handled by our error boundary system.
+      <div className="rounded-lg bg-card p-6 text-card-foreground shadow">
+        <h2 className="mb-4 text-xl font-bold">Error Demonstration Panel</h2>
+        <p className="mb-6 text-muted-foreground">
+          This panel demonstrates various types of errors and how they are handled by our error
+          boundary system.
         </p>
 
         <div className="space-y-6">
-          <div className="p-4 bg-secondary/20 rounded-md">
+          <div className="rounded-md bg-secondary/20 p-4">
             <p className="text-muted-foreground">
               Current count: {count}
-              {count > 1 && " (Error will trigger at count > 2)"}
+              {count > 1 && ' (Error will trigger at count > 2)'}
             </p>
           </div>
 
@@ -98,7 +106,7 @@ export function ErrorDemo({ throwImmediate = false }: ErrorDemoProps) {
             <div className="space-y-2">
               <button
                 onClick={triggerClientError}
-                className="w-full bg-red-500 text-white hover:bg-red-600 px-4 py-2 rounded-md transition-colors"
+                className="w-full rounded-md bg-red-500 px-4 py-2 text-white transition-colors hover:bg-red-600"
               >
                 Trigger Sync Error
               </button>
@@ -110,19 +118,17 @@ export function ErrorDemo({ throwImmediate = false }: ErrorDemoProps) {
             <div className="space-y-2">
               <button
                 onClick={() => triggerAsyncError()}
-                className="w-full bg-orange-500 text-white hover:bg-orange-600 px-4 py-2 rounded-md transition-colors"
+                className="w-full rounded-md bg-orange-500 px-4 py-2 text-white transition-colors hover:bg-orange-600"
               >
                 Trigger Async Error
               </button>
-              <p className="text-xs text-muted-foreground">
-                Simulates an API call failure
-              </p>
+              <p className="text-xs text-muted-foreground">Simulates an API call failure</p>
             </div>
 
             <div className="space-y-2">
               <button
                 onClick={triggerStateError}
-                className="w-full bg-yellow-500 text-white hover:bg-yellow-600 px-4 py-2 rounded-md transition-colors"
+                className="w-full rounded-md bg-yellow-500 px-4 py-2 text-white transition-colors hover:bg-yellow-600"
               >
                 Trigger State Error ({3 - count} clicks until error)
               </button>
@@ -134,20 +140,19 @@ export function ErrorDemo({ throwImmediate = false }: ErrorDemoProps) {
             <div className="space-y-2">
               <button
                 onClick={triggerNextJs404}
-                className="w-full bg-blue-500 text-white hover:bg-blue-600 px-4 py-2 rounded-md transition-colors"
+                className="w-full rounded-md bg-blue-500 px-4 py-2 text-white transition-colors hover:bg-blue-600"
               >
                 Trigger Next.js not-found
               </button>
               <p className="text-xs text-muted-foreground">
-                Demonstrates Next.js built-in not-found handling (renders
-                not-found.tsx)
+                Demonstrates Next.js built-in not-found handling (renders not-found.tsx)
               </p>
             </div>
 
             <div className="space-y-2">
               <button
                 onClick={triggerCustom404}
-                className="w-full bg-indigo-500 text-white hover:bg-indigo-600 px-4 py-2 rounded-md transition-colors"
+                className="w-full rounded-md bg-indigo-500 px-4 py-2 text-white transition-colors hover:bg-indigo-600"
               >
                 Trigger Custom 404 Error
               </button>
@@ -159,7 +164,7 @@ export function ErrorDemo({ throwImmediate = false }: ErrorDemoProps) {
             <div className="space-y-2">
               <button
                 onClick={triggerPromiseRejection}
-                className="w-full bg-purple-500 text-white hover:bg-purple-600 px-4 py-2 rounded-md transition-colors"
+                className="w-full rounded-md bg-purple-500 px-4 py-2 text-white transition-colors hover:bg-purple-600"
               >
                 Trigger Unhandled Rejection
               </button>

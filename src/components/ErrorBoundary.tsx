@@ -1,7 +1,10 @@
-"use client";
+'use client';
 
-import { Component, ErrorInfo, ReactNode } from "react";
-import { ErrorFallback } from "./ErrorFallback";
+import { Component, ErrorInfo, ReactNode } from 'react';
+import { ErrorFallback } from './ErrorFallback';
+
+// You would typically import your error reporting service here
+// import * as Sentry from "@sentry/nextjs";
 
 interface Props {
   children: ReactNode;
@@ -19,16 +22,40 @@ export class ErrorBoundary extends Component<Props, State> {
   };
 
   public static getDerivedStateFromError(error: Error): State {
-    // Update state so the next render will show the fallback UI.
     return { hasError: true, error };
   }
 
   public componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-    // You can log the error to an error reporting service here
-    console.group("Error Boundary Caught Error");
-    console.error("Error:", error);
-    console.error("Error Info:", errorInfo);
-    console.groupEnd();
+    // Report to error logging service
+    this.reportError(error, errorInfo);
+
+    // Development logging
+    if (process.env.NODE_ENV === 'development') {
+      console.group('Error Boundary Caught Error');
+      console.error('Error:', error);
+      console.error('Error Info:', errorInfo);
+      console.groupEnd();
+    }
+  }
+
+  private reportError(error: Error, errorInfo: ErrorInfo) {
+    // Example Sentry implementation:
+    // Sentry.captureException(error, {
+    //   extra: {
+    //     errorInfo: errorInfo,
+    //     state: this.state
+    //   }
+    // });
+
+    // For now, just log to console in production
+    if (process.env.NODE_ENV === 'production') {
+      console.error({
+        error,
+        errorInfo,
+        timestamp: new Date().toISOString(),
+        url: window.location.href,
+      });
+    }
   }
 
   private handleReset = () => {
@@ -39,10 +66,7 @@ export class ErrorBoundary extends Component<Props, State> {
     if (this.state.hasError) {
       return (
         this.props.fallback || (
-          <ErrorFallback
-            error={this.state.error}
-            resetError={this.handleReset}
-          />
+          <ErrorFallback error={this.state.error} resetError={this.handleReset} />
         )
       );
     }
