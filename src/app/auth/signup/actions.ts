@@ -10,7 +10,7 @@ export async function signUp(formData: FormData) {
     email: formData.get("email") as string,
     password: formData.get("password") as string,
     options: {
-      emailRedirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/auth/confirm`,
+      emailRedirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/auth/callback`,
     },
   });
 
@@ -19,5 +19,5 @@ export async function signUp(formData: FormData) {
     redirect("/auth/error");
   }
 
-  redirect("/auth/confirm-email");
+  redirect("/(auth-pages)/confirm-email");
 }
