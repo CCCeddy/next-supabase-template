@@ -21,21 +21,33 @@ A production-ready template for building modern web applications with Next.js 15
 
 ## ⚡ Quick Start
 
+Clone the repository:
 ```bash
-# Clone the repository
 git clone https://github.com/CCCeddy/next-supabase-template.git my-project
+```
+
+Navigate to project directory:
+```bash
 cd my-project
+```
 
-# Install dependencies
+Install dependencies:
+```bash
 pnpm install
+```
 
-# Set up environment variables (copy from .env.example)
+Set up environment variables:
+```bash
 cp .env.example .env.local
+```
 
-# Start Supabase locally
+Start Supabase locally:
+```bash
 pnpm supabase start
+```
 
-# Start development server
+Start development server:
+```bash
 pnpm dev
 ```
 
