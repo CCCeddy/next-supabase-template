@@ -16,7 +16,8 @@
     "build-storybook": "storybook build",
     "chromatic": "npx chromatic --project-token=chpt_656b86eb3aeb4dd",
     "format": "prettier --write \"**/*.{ts,tsx,md,json,js,jsx,mjs}\"",
-    "format:check": "prettier --check \"**/*.{ts,tsx,md,json,js,jsx,mjs}\""
+    "format:check": "prettier --check \"**/*.{ts,tsx,md,json,js,jsx,mjs}\"",
+    "setup-supabase": "node setup-supabase.js"
   },
   "dependencies": {
     "@hookform/resolvers": "^4.1.3",
