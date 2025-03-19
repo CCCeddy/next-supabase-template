@@ -1,12 +1,13 @@
 # Next.js 15 Template Application
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[![Next.js](https://img.shields.io/badge/Next.js-15.1.6-black)](https://nextjs.org/)
+[![Next.js](https://img.shields.io/badge/Next.js-15.2.2-black)](https://nextjs.org/)
 [![React](https://img.shields.io/badge/React-19.0.0-blue)](https://reactjs.org/)
 [![Supabase](https://img.shields.io/badge/Supabase-2.48.1-green)](https://supabase.io/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue)](https://www.typescriptlang.org/)
 
 A production-ready template for building modern web applications with Next.js 15, Supabase, and shadcn/ui. Designed for rapid MVP development with built-in authentication, database setup, and component examples.
+➡️ [View Demo](https://your-demo-url.com) <!-- Add your demo URL if available -->
 
 ![Template Preview](https://via.placeholder.com/800x400?text=Template+Preview+Screenshot) <!-- Replace with an actual screenshot of your template -->
 
@@ -19,115 +20,160 @@ A production-ready template for building modern web applications with Next.js 15
 - **Type Safety**: Full TypeScript integration throughout the codebase
 - **Error Handling**: Robust error handling system with custom error boundaries
 
-## ⚡ Quick Start
+## ✨ Key Features
 
-Clone the repository:
-```bash
-git clone https://github.com/CCCeddy/next-supabase-template.git my-project
-```
-
-Navigate to project directory:
-```bash
-cd my-project
-```
-
-Install dependencies:
-```bash
-pnpm install
-```
-
-Set up environment variables:
-```bash
-cp .env.example .env.local
-```
-
-Start Supabase locally:
-```bash
-pnpm supabase start
-```
-
-Start development server:
-```bash
-pnpm dev
-```
-
-➡️ [View Demo](https://your-demo-url.com) <!-- Add your demo URL if available -->
+- **Authentication System**: Complete auth flow with multiple providers and protected routes
+- **Database Integration**: Supabase setup with migrations and repository pattern
+- **UI Component Library**: shadcn/ui components pre-configured and styled
+- **Form Handling**: Zod validation integrated with React Hook Form
+- **Theming**: Dark/light mode with Next Themes
+- **Testing Suite**: Storybook, Vitest, and Playwright configuration
+- **Responsive Design**: Mobile-first approach with Tailwind CSS
+- **Type Safety**: Full TypeScript support throughout the codebase
+- **CI/CD Pipeline**: GitHub Actions workflow for testing and deployment
 
 ## 📋 Prerequisites
 
 - **Node.js**: 18.17 or later
-  - Run `node --version` to check
-  - [Download Node.js](https://nodejs.org/)
+  ```bash
+  node --version
+  ```
+  [Download Node.js](https://nodejs.org/)
+
 - **pnpm**: 9.5.0 (specified in package.json)
-  - Run `pnpm --version` to check
-  - Install with `npm install -g pnpm`
-  - Alternatives: npm or yarn (update commands accordingly)
-- **Supabase CLI**:
-  - Install with `npm install -g supabase`
-  - [Supabase CLI Documentation](https://supabase.com/docs/reference/cli)
+  ```bash
+  pnpm --version
+  ```
+  Install with:
+  ```bash
+  npm install -g pnpm
+  ```
+
 - **Git**: Latest version recommended
-  - Run `git --version` to check
-  - [Download Git](https://git-scm.com/downloads)
+  ```bash
+  git --version
+  ```
+  [Download Git](https://git-scm.com/downloads)
 
-## 🔧 Detailed Setup Guide
+- **Docker**: Latest version recommended (required for Supabase)
+  ```bash
+  docker --version
+  ```
+  [Download Docker](https://www.docker.com/products/docker-desktop/)
 
-<details>
-<summary>Click to expand detailed setup instructions</summary>
+## ⚡ Quick Start
 
-### 1. Environment Setup
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/CCCeddy/next-supabase-template.git my-project
+   ```
 
-Create a `.env.local` file in the root directory:
+2. Navigate to project directory:
+   ```bash
+   cd my-project
+   ```
 
-```env
-# Auth Provider Setup
-GOOGLE_CLIENT_ID=        # From Google Cloud Console
-GOOGLE_CLIENT_SECRET=    # From Google Cloud Console
-GITHUB_ID=              # From GitHub Developer Settings
-GITHUB_SECRET=          # From GitHub Developer Settings
+3. Install dependencies:
+   ```bash
+   pnpm install
+   ```
 
-# Supabase Configuration
-NEXT_PUBLIC_SUPABASE_URL=       # From Supabase Project Settings
-NEXT_PUBLIC_SUPABASE_ANON_KEY=  # From Supabase Project Settings
-SUPABASE_SERVICE_ROLE_KEY=      # From Supabase Project Settings
-NEXT_PUBLIC_SITE_URL=           # Your deployment URL (localhost:3000 for development)
+4. Set up environment variables:
+   ```bash
+   cp .env.example .env.local
+   ```
 
-# Optional for Supabase Studio AI features
-OPENAI_API_KEY=           # Optional: For Supabase Studio AI features
+5. Start development server:
+   ```bash
+   pnpm dev
+   ```
 
-# Optional for Chromatic (if using)
-CHROMATIC_PROJECT_TOKEN=  # Your project token
+Visit [http://localhost:3000](http://localhost:3000) to see your application!
+
+## 🏁 Getting Started
+
+After running the application, you'll see the home page with navigation to explore the template features. Here's what to check out first:
+
+- **Home Page**: Overview of the template with key features
+- **Playground**: Interactive demo of the UI components
+- **Various other example pages**: Zod  validation, API validation, and more
+- **Login/Signup**: Authentication flow examples - **Note: you will need to set up Supabase for this**
+
+If you want to test features that require authentication, follow the Supabase setup instructions in the next section.
+
+
+## 🔐 Setting Up Supabase for Authentication
+
+Supabase powers the authentication and database functionality in this template. Follow these steps to set it up properly:
+
+### Prerequisites for Supabase
+
+1. Install and set up Supabase CLI and Docker
+   - Follow the official guide: [Supabase Local Development](https://supabase.com/docs/guides/local-development/cli/getting-started?queryGroups=platform&platform=windows&queryGroups=access-method&access-method=analytics)
+   - **Important**: Do not run `supabase init` and ensure Docker is configured to "Expose daemon on tcp://localhost:2375 without TLS"
+
+2. If you've previously used Supabase CLI, stop any running instances:
+   ```bash
+   supabase stop
+   ```
+
+### Setting Up Supabase for This Project
+
+1. Configure auth providers in your `.env.local` file:
+   ```bash
+   # Add these values to your .env.local
+   GOOGLE_CLIENT_ID=your_google_client_id
+   GOOGLE_CLIENT_SECRET=your_google_client_secret
+   GITHUB_ID=your_github_id
+   GITHUB_SECRET=your_github_secret
+   ```
+
+   **How to get these credentials:**
+   - For Google: Create a project in [Google Cloud Console](https://console.cloud.google.com/)
+     - Set authorized JavaScript origin to `http://localhost:3000`
+     - Set redirect URI to `http://localhost:54321/auth/v1/callback`
+   
+   - For GitHub: Create an OAuth app in [GitHub Developer Settings](https://github.com/settings/developers)
+     - Set homepage URL to `http://localhost:3000`
+     - Set authorization callback URL to `http://localhost:54321/auth/v1/callback`
+
+2. Initialize and start Supabase with custom settings:
+   ```bash
+   pnpm setup-supabase my-project 0
+   ```
+   
+   This command:
+   - Creates a Supabase project named "my-project"
+   - Uses the default port (54321) for the callback URL
+   - To use a different port, specify a port increment (e.g., `10` would use port 54331)
+   
+   The `setup-supabase` script handles:
+   - Creating necessary configuration files
+   - Initializing the Supabase project
+   - Starting the Supabase services
+   - Setting up authentication providers
+   - Applying database migrations
+
+3. After Supabase starts successfully, you can:
+   - Test authentication flows
+   - Access the data-access-demo page
+   - View and edit your profile
+
+4. Access Supabase Studio locally at [http://localhost:54323](http://localhost:54323)
+
+## 💫 Other Features
+
+### Database Management
+
+Apply database migrations:
+```bash
+supabase db reset
 ```
 
-### 2. Configure Auth Providers
-- Add redirect URI to your providers: `{siteURL}/auth/v1/callback`
-- For Google: Configure through Google Cloud Console
-- For GitHub: Configure through GitHub Developer Settings
-
-### 3. Database Setup
+Generate TypeScript types from your database schema:
 ```bash
-# Install Supabase CLI
-npm install -g supabase
-
-# Start local Supabase
-pnpm supabase start
-
-# Apply migrations
-supabase db reset
-
-# Generate types
 supabase gen types typescript --local > src/types/supabase.ts
 ```
-
-> **Note**: This template uses local Supabase for development. For production:
-> 1. Create a Supabase project at [supabase.com](https://supabase.com)
-> 2. Push your migrations: `supabase db push`
-> 3. Update your `.env.local` with production credentials
-
-### 4. Start Development
-```bash
-pnpm dev
-```
-</details>
 
 ## 🧪 Testing Suite
 
@@ -156,8 +202,6 @@ This template implements a mobile-first approach with:
 - Responsive form elements and modals
 - Proper viewport configuration for various devices
 
-Test your app's responsiveness using the browser's device simulator or real devices.
-
 ## ⚙️ Performance Optimizations
 
 - Next.js App Router with server components for optimal loading
@@ -167,6 +211,17 @@ Test your app's responsiveness using the browser's device simulator or real devi
 - Database query optimization in repositories
 - Server-side rendering for SEO and initial load performance
 - Optimized authentication flow
+
+## 🎨 UI Components with shadcn/ui
+
+This template uses [shadcn/ui](https://ui.shadcn.com), a collection of reusable components built using Radix UI and Tailwind CSS. Unlike traditional component libraries, shadcn/ui components:
+
+- Are copied into your project rather than installed as dependencies
+- Are fully customizable and adaptable to your design system
+- Have no external runtime dependencies
+- Provide excellent accessibility out of the box
+
+You'll find these components in the `src/components/ui` directory, ready to be customized to match your brand.
 
 ## 📁 Project Structure
 
@@ -267,29 +322,6 @@ project-root/
 
 - **/src/services**: Business logic layer separating database from UI
 
-### 📝 File Naming Conventions
-
-- **Routing Files (Next.js App Router)**
-  - Use all lowercase kebab-case for special files (e.g., `page.tsx`, `layout.tsx`, `middleware.ts`).
-  - Folder names for routes are in kebab-case (e.g., `auth-pages`, `private`).
-
-- **React Components**
-  - **High-Level Components:** Use PascalCase (e.g., `ThemeToggle.tsx`, `Providers.tsx`, `CreateInstrumentForm.tsx`).
-  - **Smaller/Utility Components:** Use kebab-case (e.g., `logout-button.tsx`, `button.tsx`, `input.tsx`).
-
-- **Hooks & Utilities**
-  - Use kebab-case (e.g., `use-auth.ts`, `db-client.ts`).
-
-- **SQL Files**
-  - Use snake_case with a timestamp prefix (e.g., `20240301000000_create_instruments.sql`).
-
-- **Test Files**
-  - Use a `.spec.ts` or `.test.ts` suffix for clarity (e.g., `component.spec.ts`).
-
-- **Static Assets**
-  - Maintain original naming (e.g., `file.svg`, `next.svg` in the `public` folder).
-
-
 ### 🔍 Key Files
 
 - `src/middleware.ts`: Authentication and route protection
@@ -298,28 +330,6 @@ project-root/
 - `src/hooks/use-auth.ts`: Authentication hook for components
 - `supabase/migrations/*.sql`: Database schema and RLS policies
 </details>
-
-## 🔐 Authentication Flow
-
-The template implements a secure authentication system using Supabase Auth with multiple providers:
-
-<!-- Consider adding an authentication flow diagram here -->
-![Authentication Flow Diagram](https://via.placeholder.com/800x400?text=Auth+Flow+Diagram) <!-- Replace with actual diagram -->
-
-- OAuth integration (Google, GitHub)
-- Email/password authentication
-- Session management
-- Protected routes
-- Row Level Security (RLS) policies
-
-## 🛠️ Example Use Cases
-
-This template has been successfully used to build:
-
-1. **SaaS Dashboard** - A customer management platform with user roles and analytics
-2. **Content Management System** - Editorial workflow with media management
-3. **E-commerce MVP** - Product catalog with user accounts and cart functionality
-4. **Form-Heavy Applications** - Using Zod for robust form validation and type safety
 
 ## 💡 Development Tips
 
@@ -363,28 +373,10 @@ const form = useForm<z.infer<typeof userInfoSchema>>({
 });
 ```
 
-Key features:
-- Immediate validation feedback
-- Type inference for TypeScript
-- Custom error messages
-- Integration with shadcn/ui components
-- Responsive form design
-
-## 🔮 Roadmap
-
-Future enhancements planned for this template:
-
-- [ ] Stripe integration for subscription management
-- [ ] Internationalization (i18n) support
-- [ ] Advanced analytics setup
-- [ ] Enhanced role-based access control
-- [ ] PWA configuration
-- [ ] Optimized SEO setup
-
 ## 🚀 Deployment
 
-1. Create a Supabase project
-2. Update environment variables
+1. Create a Supabase project at [Supabase.com](https://supabase.com)
+2. Update environment variables with production credentials
 3. Deploy to Vercel:
 ```bash
 vercel deploy
@@ -392,88 +384,39 @@ vercel deploy
 
 ## 🔄 CI/CD Pipeline
 
-This template includes a robust CI/CD pipeline using GitHub Actions that automates testing, building, and deployment processes.
+This template includes a GitHub Actions CI/CD pipeline that automates:
 
-### 📋 Pipeline Features
+- Unit and E2E testing
+- Code quality and format verification
+- Preview deployments for Pull Requests
+- Production deployments for the main branch
 
-- **Automated Testing**
-  - Unit tests (Vitest)
-  - E2E tests (Playwright)
-  - Code quality checks (ESLint)
-  - Format verification (Prettier)
-
-- **Automated Deployments**
-  - Preview deployments for Pull Requests
-  - Production deployments for main/master branch
-  - Artifact preservation for debugging
-
-### 🔧 Setup Instructions
-
-1. **Configure Vercel Integration**
-   ```bash
-   # Install Vercel CLI
-   npm i -g vercel
-   
-   # Link your project
-   vercel link
-   ```
-
-2. **Set GitHub Repository Secrets**
-   Add to your repository's secrets:
-   - `VERCEL_TOKEN`
-   - `VERCEL_PROJECT_ID`
-   - `VERCEL_ORG_ID`
-
-### 🔄 Workflow Stages
-
-1. **Pull Request**
-   - Runs all tests and quality checks
-   - Creates preview deployment
-   - Reports status in PR
-
-2. **Main Branch Merge**
-   - Validates all checks
-   - Creates production build
-   - Deploys to production
-   - Archives artifacts
-
-### 📊 Monitoring
-
-- Preview deployments: Check PR comments
-- Production status: Vercel dashboard
-- Build logs: GitHub Actions tab
+See the `.github/workflows` directory for configuration details.
 
 ## ❓ Troubleshooting
 
 <details>
 <summary>Common Issues and Solutions</summary>
 
+### Supabase Startup Issues
+
+**Issue**: Supabase not starting with `supabase start`  
+**Solution**: Try using `pnpm supabase start` instead. This ensures the correct version and configuration is used from the project's dependencies.
+
 ### Authentication Problems
 
-**Issue**: Redirect URI not working with OAuth providers  
-**Solution**: Ensure your redirect URI exactly matches `{NEXT_PUBLIC_SITE_URL}/auth/v1/callback` in your provider settings
+**Issue**: Unable to sign in with Google/GitHub  
+**Solution**: Ensure your redirect URI matches the port number used by your Supabase instance:
 
-**Issue**: "User not found" errors  
-**Solution**: Check if your Supabase tables have proper RLS policies and if the user exists in the auth schema
+1. Default redirect URI is `http://localhost:54321/auth/v1/callback`
+2. If you used a different port increment when running `pnpm setup-supabase my-project <port-increment>`, your port number will be `54321 + <port-increment>`
+3. You can find your actual port number in the Supabase startup output
 
-### Database Connection Issues
+Configure your OAuth providers with the correct redirect URI:
+- Google: Update in [Google Cloud Console](https://console.cloud.google.com/apis/credentials)
+- GitHub: Update in [GitHub OAuth Apps](https://github.com/settings/developers)
 
-**Issue**: "Connection refused" with local Supabase  
-**Solution**: Ensure Supabase local development is running with `pnpm supabase start`
-
-**Issue**: TypeScript errors with Supabase types  
-**Solution**: Regenerate types with `supabase gen types typescript --local > src/types/supabase.ts`
-
-### Build Errors
-
-**Issue**: Build fails with module resolution errors  
-**Solution**: Check import paths and ensure all dependencies are installed
-
-**Issue**: Environment variables not available during build  
-**Solution**: Ensure environment variables are properly set in your hosting platform
-
-### For more issues, check:
-
+For more issues, check:
 - [Supabase Documentation](https://supabase.io/docs/reference/javascript/installing)
 - [Next.js Troubleshooting Guide](https://nextjs.org/docs/messages)
 - [Project Issues on GitHub](https://github.com/CCCeddy/next-supabase-template/issues)
@@ -482,7 +425,7 @@ This template includes a robust CI/CD pipeline using GitHub Actions that automat
 
 ## 📦 Key Dependencies
 
-- Next.js 15.1.6
+- Next.js 15.2.2
 - React 19.0.0
 - Supabase Client 2.48.1
 - Storybook 8.5.3
@@ -500,13 +443,13 @@ This template includes a robust CI/CD pipeline using GitHub Actions that automat
 
 ## 🤝 Contributing
 
-1. Fork the repository at [https://github.com/CCCeddy/next-supabase-template](https://github.com/CCCeddy/next-supabase-template)
+1. Fork the repository
 2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
 3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
 4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request to the main repository
+5. Open a Pull Request
 
-## Development
+## Development Commands
 
 ```bash
 pnpm dev               # Starts Next.js with Turbopack (--turbopack flag)
@@ -514,6 +457,8 @@ pnpm debug             # Runs debug script from scripts/next-debug.mjs
 pnpm build             # Builds the production application
 pnpm start             # Starts the production server
 pnpm lint              # Runs ESLint
+pnpm format            # Runs Prettier to format code
+pnpm format:check      # Checks formatting without making changes
 ```
 
 ## 📝 License
@@ -526,21 +471,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 * Github: [@CCCeddy](https://github.com/CCCeddy)
 * Repository: [next-supabase-template](https://github.com/CCCeddy/next-supabase-template)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
