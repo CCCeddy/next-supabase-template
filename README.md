@@ -82,6 +82,7 @@ Supabase powers the authentication and database functionality in this template. 
 1. Install and set up Supabase CLI and Docker
    - Follow the official guide: [Supabase Local Development](https://supabase.com/docs/guides/local-development/cli/getting-started?queryGroups=platform&platform=windows&queryGroups=access-method&access-method=analytics)
    - **Important**: Do not run `supabase init` and ensure Docker is configured to "Expose daemon on tcp://localhost:2375 without TLS"
+   - If you have already run `supabase init`, remove the `config.toml` in the `supabase` directory before setting up Supabase for this project.
 
 2. If you've previously used Supabase CLI, stop any running instances:
    ```bash
