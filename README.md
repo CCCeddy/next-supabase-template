@@ -13,57 +13,28 @@ A production-ready template for building modern web applications with Next.js 15
 
 ## 🚀 Why Use This Template?
 
-- **Production Ready**: Built with best practices and performance in mind
-- **Rapid Development**: Get your MVP running in hours, not days
-- **Full Stack Solution**: Authentication, database, and UI components pre-configured
-- **Developer Experience**: Comprehensive testing suite and development tools included
-- **Type Safety**: Full TypeScript integration throughout the codebase
-- **Error Handling**: Robust error handling system with custom error boundaries
+ - **Rapid MVP Development:** Quickly set up authentication, database, UI components, and form handling.
 
-## ✨ Key Features
+ - **Supabase Integration:** Pre-configured database setup with migrations and schema management.
 
-- **Authentication System**: Complete auth flow with multiple providers and protected routes
-- **Database Integration**: Supabase setup with migrations and repository pattern
-- **UI Component Library**: shadcn/ui components pre-configured and styled
-- **Form Handling**: Zod validation integrated with React Hook Form
-- **Theming**: Dark/light mode with Next Themes
-- **Testing Suite**: Storybook, Vitest, and Playwright configuration
-- **Responsive Design**: Mobile-first approach with Tailwind CSS
-- **Type Safety**: Full TypeScript support throughout the codebase
-- **CI/CD Pipeline**: GitHub Actions workflow for testing and deployment
+ - **Comprehensive Testing**: Built-in Storybook, Vitest, and Playwright configurations.
+
+ - **Responsive UI**: Mobile-first design approach with shadcn/ui components.
+
+ - **CI/CD Ready:** Includes GitHub Actions workflows for automated testing and deployment.
 
 ## 📋 Prerequisites
 
-- **Node.js**: 18.17 or later
-  ```bash
-  node --version
-  ```
-  [Download Node.js](https://nodejs.org/)
+- Node.js (18.17+)
 
-- **pnpm**: 9.5.0 (specified in package.json)
-  ```bash
-  pnpm --version
-  ```
-  Install with:
-  ```bash
-  npm install -g pnpm
-  ```
+- pnpm (9.5.0)
 
-- **Git**: Latest version recommended
-  ```bash
-  git --version
-  ```
-  [Download Git](https://git-scm.com/downloads)
+- Git
 
-- **Docker**: Latest version recommended (required for Supabase)
-  ```bash
-  docker --version
-  ```
-  [Download Docker](https://www.docker.com/products/docker-desktop/)
-
+- Docker (required for Supabase)
 ## ⚡ Quick Start
 
-1. Clone the repository:
+1. Clone the repository (alternatively you can navigate to https://github.com/CCCeddy/next-supabase-template and select 'Use this template'):
    ```bash
    git clone https://github.com/CCCeddy/next-supabase-template.git my-project
    ```
@@ -88,7 +59,7 @@ A production-ready template for building modern web applications with Next.js 15
    pnpm dev
    ```
 
-Visit [http://localhost:3000](http://localhost:3000) to see your application!
+6. Visit [http://localhost:3000](http://localhost:3000) to see your application!
 
 ## 🏁 Getting Started
 
