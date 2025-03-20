@@ -10,7 +10,7 @@ export type DbResponse<T> = {
 };
 
 export class DatabaseService {
-  private client: SupabaseClient<Database>;
+  private client: SupabaseClient<Database> | null;
 
   constructor(client?: SupabaseClient<Database>) {
     this.client = client || createClient();
@@ -19,6 +19,18 @@ export class DatabaseService {
   async query<T>(
     operation: (client: SupabaseClient<Database>) => Promise<T>,
   ): Promise<DbResponse<T>> {
+    if (!this.client) {
+      return {
+        data: null,
+        error: {
+          code: "NO_CLIENT",
+          message: "Supabase client not initialized",
+          details:
+            "Database operations are not available without Supabase configuration",
+        },
+      };
+    }
+
     try {
       const result = await operation(this.client);
       return { data: result, error: null };
