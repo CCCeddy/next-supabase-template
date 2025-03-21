@@ -9,7 +9,8 @@
 A production-ready template for building modern web applications with Next.js 15, Supabase, and shadcn/ui. Designed for rapid MVP development with built-in authentication, database setup, and component examples.
 ➡️ [View Demo](https://your-demo-url.com) <!-- Add your demo URL if available -->
 
-![Template Preview](https://via.placeholder.com/800x400?text=Template+Preview+Screenshot) <!-- Replace with an actual screenshot of your template -->
+
+![Template Preview](DemoPic.png)
 
 ## 🚀 Why Use This Template?
 
